@@ -22,7 +22,6 @@ export default function PokeCard(props) {
     async function fetchMoveData(move, moveUrl) {
         if (loadingSkill || !localStorage || !moveUrl) { return }
 
-        // check cache for move
         let c = {}
         if (localStorage.getItem('pokemon-moves')) {
             c = JSON.parse(localStorage.getItem('pokemon-moves'))
@@ -59,19 +58,15 @@ export default function PokeCard(props) {
 
 
     useEffect(() => {
-        // if loading, exit logic
         if (loading || !localStorage) { return }
-        // check if the selected pokemon information is available in the cache
-        // 1. define the cache
         let cache = {}
         if (localStorage.getItem('pokemania')) {
             cache = JSON.parse(localStorage.getItem('pokemania'))
         }
 
-        // 2. check if the selected pokemon is in the cache, otherwise fetch from the API
 
         if (selectedPokemon in cache) {
-            //read from cache
+
             setData(cache[selectedPokemon])
             console.log('Found pokemon in cache')
             return
@@ -96,8 +91,6 @@ export default function PokeCard(props) {
         }
 
         fetchPokemonData()
-
-        // if we fetch from the api, make sure to save the information to the cache for next time
 
     }, [selectedPokemon])
 
