@@ -31,13 +31,14 @@ export default function SideNav(props) {
                 setSearchValue(e.target.value)
             }} />
             {filteredPokemon.map((pokemon, pokemonIndex) => {
+                const truePokeManiaNumber = first151Pokemon.indexOf(pokemon)
                 return (
                     <button
                         onClick={() => {
-                            setSelectedPokemon(pokemonIndex)
+                            setSelectedPokemon(truePokeManiaNumber)
                         }}
                         key={pokemonIndex} className={'nav-card ' + (pokemonIndex === selectedPokemon ? ' nav-card-selected' : ' ')}>
-                        <p>{getFullPokeManiaNumber(pokemonIndex)}</p>
+                        <p>{getFullPokeManiaNumber(truePokeManiaNumber)}</p>
                         <p>{pokemon}</p>
                     </button>
                 )
